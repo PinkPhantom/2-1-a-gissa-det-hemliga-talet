@@ -21,7 +21,7 @@ namespace _1DV402.S2.L1A
             do
             {
                 // Initiera ny spelomgång.
-                secretNumber.Initialize();
+                SecretNumber.Initialize();
 
                 // Rensa konsolfönstret och skriv ut ledtext.
                 Console.Clear();
