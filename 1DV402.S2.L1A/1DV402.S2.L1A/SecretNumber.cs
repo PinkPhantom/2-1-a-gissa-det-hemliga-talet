@@ -7,48 +7,62 @@ namespace _1DV402.S2.L1A
 {
     class SecretNumber
     {
-        public const int MaxNumberOfGuesses = 8;
-        public int _count = MaxNumberOfGuesses;
-        private int _secretNumber = -1;
+        // Publik namngiven konstant
+        public const int MaxNumberOfGuesses = 7;
+
+        // _Count privat i classen secret number
+        private int _count;
 
 
+        private int _number;
+
+       //Default constructor
         public SecretNumber()
         {
+            Initialize();
         }
 
         public void Initialize()
-        {
+        {           
             Random random = new Random();
-            _secretNumber = random.Next(1, 101);
+            _number = random.Next(1, 101);
+            _count = 0;            
         }
-
 
         public bool MakeGuess(int number)
         {
-            _count--;
-            if (number > _secretNumber)
+          if (_count < MaxNumberOfGuesses)
+          {
+            if (number < 1 | number > 100)
             {
-                Console.WriteLine("{0} To high. You have {1} guesses left", number, _count);
-                if (_count == 0)
-                {
-                    Console.WriteLine("The secret number was {0}", _secretNumber);
-                }
-                return false;
-            }
-            else if (number < _secretNumber)
-            {
-                Console.WriteLine("{0} To low. You have {1} guesses left", number, _count);
-                if (_count == 0)
-                {
-                    Console.WriteLine("The scret number was {0}", _secretNumber);
-                }
-                return false;
+                throw new ArgumentOutOfRangeException();
             }
             else
-            {
-                Console.WriteLine("Correctly guessed. You did it in {0} attempts", MaxNumberOfGuesses - _count);
-                return true;
-            }
+            {            
+                 if (number < _number)
+                {
+                   Console.Write("{0} är för lågt. Du har {1} försök på dig.", (1+ _count));
+                }
+
+                else
+                {
+                   Console.Write("{0} är för lågt. Du har {1} försök på dig.", (1+ _count));
+                }  
+          
+                if (_count == 7)
+                {
+
+                }
+                ++_count;
+                return false;
+           }
         }
+         else
+          {
+              throw new ApplicationException();
+          }
+
+        }
+
     }
 }
